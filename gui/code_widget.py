@@ -139,7 +139,7 @@ class AgentBubble(QFrame):
         lay.setContentsMargins(14, 10, 14, 10)
         lay.setSpacing(4)
 
-        role = QLabel("🌶️  Tabasco Code")
+        role = QLabel("Tabasco Code")
         role.setStyleSheet(
             f"color: {_C['text_dim']}; font-size: 10px; font-weight: bold; "
             f"background: transparent; border: none;"

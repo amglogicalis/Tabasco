@@ -357,9 +357,9 @@ class PlaceholderWidget(QWidget):
             logo_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
             logo_lbl.setStyleSheet("background:transparent; border:none;")
         else:
-            logo_lbl = QLabel("🌶️")
+            logo_lbl = QLabel("[T]")
             logo_lbl.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            logo_lbl.setStyleSheet("font-size: 56px; background:transparent; border:none;")
+            logo_lbl.setStyleSheet("font-size: 40px; color:#c0392b; font-weight:bold; background:transparent; border:none;")
         card_lay.addWidget(logo_lbl)
 
         title_lbl = QLabel("TABASCO")

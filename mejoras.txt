@@ -1,8 +1,0 @@
-EVOLUCION DEL PROYECTO:
-
-Con una base solida ya lista la aprovecharemos para evolucionar tabasco a otro nivel, usando la base que tenemos para evolucionarlo y crear Tabasco Code. Su funcion sera la misma que tiene antigravity, codex o claude code su funcionamiento debera replicarlo,es decir, un chat grafico al que se le pide algo y el mismo lo crea, ejecuta comandos y demas. Ademas de la opcion de elegir la carpeta donde se creara todo o analizara. 
-  
-Aprovecharemos nuestro sistema anti deteccion y lo mejoraremos e implementaremos nuevas funciones. Podriamos hacer multi modelo ya que estos sistemas necesitan multiples llamadas. Hay que hacerlo bien y optimizado y pensar bien como hcaerlo.
-
-
-
