@@ -76,3 +76,8 @@ debug_gemini_page.html
 *.sln
 *.swp
 *~
+
+# Ignore all internal scripts but keep check_imports.py for users
+scripts/
+!scripts/check_imports.py
+
