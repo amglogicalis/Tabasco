@@ -1,6 +1,6 @@
-<p align="center"><img src="assets/icons/tabasco_logo.png" alt="Tabasco Logo" width="220" /></p>
+# TABASCO
 
-<h1 align="center">TABASCO</h1>
+<p align="center"><img src="assets/icons/tabasco_logo.png" alt="Tabasco Logo" width="220" /></p>
 
 <p align="center"><b>Terminal AI Bridge & Autonomous Coding Agent</b><br>Un entorno de desarrollo híbrido de alto rendimiento que fusiona la potencia de los LLMs comerciales con tu sistema local, de forma 100% gratuita y sin consumo de API keys.</p>
 
