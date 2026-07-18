@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabasco — Terminal AI Bridge & Autonomous Coding Agent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070202;
+      --card-bg: #0d0404;
+      --border: #210a0a;
+      --border-hover: #3d1414;
+      --accent: #c0392b;
+      --accent-glow: #e74c3c;
+      --text: #e8d5d5;
+      --text-dim: #8b6868;
+      --shadow-red: rgba(192, 57, 43, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Partículas de Fondo Simples */
+    .bg-grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(to right, rgba(192, 57, 43, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(192, 57, 43, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -2;
+    }
+
+    .glow-effect {
+      position: fixed;
+      top: -10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(192, 57, 43, 0.08) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(50px);
+    }
+
+    /* Header & Hero */
+    header {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo-img {
+      height: 42px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: var(--text);
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 60px auto 40px;
+      padding: 0 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero-logo {
+      width: 180px;
+      height: auto;
+      margin-bottom: 25px;
+      filter: drop-shadow(0 0 20px var(--shadow-red));
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, var(--text-dim) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-glow) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--text-dim);
+      max-width: 700px;
+      margin-bottom: 35px;
+      font-weight: 300;
+    }
+
+    /* Botones */
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+      box-shadow: 0 4px 15px var(--shadow-red);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(192, 57, 43, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background-color: rgba(255,255,255,0.02);
+      transform: translateY(-2px);
+    }
+
+    /* Grid de Features */
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    .features-grid {
+      max-width: 1100px;
+      margin: 40px auto 80px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(192, 57, 43, 0.05);
+    }
+
+    .feature-icon {
+      font-size: 28px;
+      margin-bottom: 16px;
+      color: var(--accent-glow);
+    }
+
+    .feature-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--text-dim);
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    /* Sección de Código / Demo */
+    .console-section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .console {
+      background-color: #030101;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+
+    .console-header {
+      background-color: var(--card-bg);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background-color: #ff5f56; }
+    .dot-yellow { background-color: #ffbd2e; }
+    .dot-green { background-color: #27c93f; }
+    .console-title {
+      margin-left: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .console-body {
+      padding: 24px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: #a8c8a8;
+      min-height: 250px;
+    }
+
+    .console-line {
+      margin-bottom: 8px;
+      display: flex;
+    }
+
+    .console-prompt {
+      color: var(--accent-glow);
+      margin-right: 10px;
+      user-select: none;
+    }
+
+    .typing {
+      border-right: 2px solid var(--accent-glow);
+      white-space: nowrap;
+      animation: blink 0.75s step-end infinite;
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: var(--accent-glow); }
+    }
+
+    /* Instalación */
+    .install-section {
+      max-width: 900px;
+      margin: 80px auto;
+      padding: 0 20px;
+    }
+
+    .code-block {
+      background-color: #030101;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      margin-top: 20px;
+    }
+
+    .code-block pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--text);
+      overflow-x: auto;
+    }
+
+    .code-tag {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dim);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 13px;
+      margin-top: 100px;
+      background-color: #050202;
+    }
+
+    footer a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 38px; }
+      .hero p { font-size: 16px; }
+      .btn-group { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto 40px; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="glow-effect"></div>
+
+  <header>
+    <a href="#" class="logo-container">
+      <img src="../assets/icons/tabasco_logo_icon.png" alt="🌶️" class="logo-img">
+      <span class="logo-text">TABASCO</span>
+    </a>
+    <a href="https://github.com" class="btn btn-secondary" style="padding: 8px 16px; font-size: 13px;">Ver GitHub</a>
+  </header>
+
+  <section class="hero">
+    <img src="../assets/icons/tabasco_logo.png" alt="Tabasco Logo" class="hero-logo">
+    <h1>El puente definitivo entre tu PC y la <span>Inteligencia Artificial</span></h1>
+    <p>Una aplicación de escritorio de alto rendimiento que conecta tu workspace local a Gemini, ChatGPT y Claude. Gratis, sin API keys y con bypass anti-detección.</p>
+    
+    <div class="btn-group">
+      <a href="#install" class="btn btn-primary">Instalar Tabasco</a>
+      <a href="#features" class="btn btn-secondary">Explorar Funciones</a>
+    </div>
+  </section>
+
+  <section id="features" class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🤖</div>
+      <h3>Sin API Keys</h3>
+      <p>Olvídate de pagar por tokens. Tabasco aprovecha la interfaz web pública de tus bots para habilitar un backend local 100% gratuito.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">🕵️</div>
+      <h3>Bypass Anti-Detección</h3>
+      <p>Con tecnología Stealth integrada. Emula huellas de usuario, tiempos de interacción aleatorios y pegado enriquecido de QuillJS para eludir protecciones automatizadas.</p>
+    </div>
+    
+    <div class="feature-card">
+      <div class="feature-icon">💻</div>
+      <h3>Tabasco Code (Agente)</h3>
+      <p>El núcleo de desarrollo. La IA puede leer tu estructura de archivos, escribir o reescribir código y lanzar comandos en tu terminal local de forma segura.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Sandbox de Seguridad</h3>
+      <p>Seguridad de archivos absoluta. El agente opera encapsulado en el workspace asignado, protegiendo tus archivos del sistema contra accesos externos.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🔑</div>
+      <h3>Perfiles Persistentes</h3>
+      <p>Los datos y logins se guardan de forma aislada e independiente en tu máquina local. Inicia sesión una vez y chatea indefinidamente.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <h3>Interfaz Premium</h3>
+      <p>Experiencia de usuario de alto nivel: burbujas redimensionables en altura, selector rápido de modelos, historial completo y consola integrada.</p>
+    </div>
+  </section>
+
+  <h2 class="section-title">En Acción: Loop Autónomo</h2>
+  <section class="console-section">
+    <div class="console">
+      <div class="console-header">
+        <div class="dot dot-red"></div>
+        <div class="dot dot-yellow"></div>
+        <div class="dot dot-green"></div>
+        <div class="console-title">tabasco-code@agent: ~</div>
+      </div>
+      <div class="console-body">
+        <div class="console-line">
+          <span class="console-prompt">&gt;</span>
+          <span class="typing">Crea un archivo hello.py que imprima hola mundo y ejecútalo...</span>
+        </div>
+        <div style="color: #6a8f6a; margin-top: 15px; display: none;" id="log1">[Razonamiento] Analizando workspace y creando hello.py...</div>
+        <div style="color: #66cc66; margin-top: 5px; display: none;" id="log2">[WRITE] [OK] Archivo escrito: hello.py (32 bytes)</div>
+        <div style="color: #c0ab6a; margin-top: 5px; display: none;" id="log3">[SHELL] $ python hello.py</div>
+        <div style="color: #e8d5d5; margin-top: 2px; font-family: monospace; display: none;" id="log4">&nbsp;&nbsp;Hello from Tabasco Code!</div>
+        <div style="color: #4aaa66; margin-top: 15px; font-weight: bold; display: none;" id="log5">✅ TAREA COMPLETADA CON ÉXITO</div>
+      </div>
+    </div>
+  </section>
+
+  <h2 class="section-title" id="install">Guía de Instalación</h2>
+  <section class="install-section">
+    <p style="color: var(--text-dim); text-align: center; margin-bottom: 20px;">Clona el repositorio e instala los binarios necesarios en menos de 2 minutos:</p>
+    
+    <div class="code-block">
+      <div class="code-tag">Terminal</div>
+      <pre><code><span style="color: var(--text-dim);"># 1. Instala las dependencias</span>
+pip install -r requirements.txt
+
+<span style="color: var(--text-dim);"># 2. Descarga el motor Chromium</span>
+python -m playwright install chromium
+
+<span style="color: var(--text-dim);"># 3. Comprueba los imports del sistema</span>
+python check_imports.py
+
+<span style="color: var(--text-dim);"># 4. Lanza Tabasco</span>
+python main.py</code></pre>
+    </div>
+  </section>
+
+  <footer>
+    <p>Desarrollado con 🌶️ por Adrián. Todos los derechos reservados &copy; 2026.</p>
+    <p style="margin-top: 8px; font-size: 11px;"><a href="LICENSE">Ver Términos de Licencia Propietaria</a></p>
+  </footer>
+
+  <script>
+    // Simular animación de consola de comandos
+    const logs = [
+      { id: 'log1', delay: 1800 },
+      { id: 'log2', delay: 3000 },
+      { id: 'log3', delay: 4200 },
+      { id: 'log4', delay: 5200 },
+      { id: 'log5', delay: 6200 }
+    ];
+
+    logs.forEach(item => {
+      setTimeout(() => {
+        const el = document.getElementById(item.id);
+        if (el) el.style.display = 'block';
+      }, item.delay);
+    });
+  </script>
+</body>
+</html>

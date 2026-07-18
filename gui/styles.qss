@@ -1,0 +1,425 @@
+/* ═══════════════════════════════════════════════════
+   TABASCO — Estilos globales v2.0
+   Tema rojo/granate oscuro premium — Julio 2026
+   Paleta base: #0d0303 (negro), #8b1a1a (rojo), #e8d5d5 (crema)
+═══════════════════════════════════════════════════ */
+
+/* ── Base ── */
+QWidget {
+    background-color: #0f0404;
+    color: #e8d5d5;
+    font-family: "Segoe UI", "Inter", "Arial", sans-serif;
+    font-size: 13px;
+    border: none;
+    outline: none;
+}
+
+QMainWindow {
+    background-color: #0f0404;
+}
+
+/* ── Scrollbars ── */
+QScrollBar:vertical {
+    background: transparent;
+    width: 6px;
+    border-radius: 3px;
+    margin: 2px 1px;
+}
+QScrollBar::handle:vertical {
+    background: #3d1010;
+    border-radius: 3px;
+    min-height: 28px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #6b1e1e;
+}
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0;
+}
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: none;
+}
+QScrollBar:horizontal {
+    height: 5px;
+    background: transparent;
+    border-radius: 3px;
+    margin: 1px 2px;
+}
+QScrollBar::handle:horizontal {
+    background: #3d1010;
+    border-radius: 3px;
+}
+QScrollBar::handle:horizontal:hover {
+    background: #6b1e1e;
+}
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0;
+}
+
+/* ══════════════════════════════════════════
+   SIDEBAR
+══════════════════════════════════════════ */
+#sidebar {
+    background-color: #080202;
+    border-right: 1px solid #1e0808;
+    min-width: 248px;
+    max-width: 248px;
+}
+
+/* ══════════════════════════════════════════
+   ÁREA DE CHAT
+══════════════════════════════════════════ */
+#chat_area {
+    background-color: #0f0404;
+}
+
+#chat_scroll {
+    background-color: #0f0404;
+}
+
+/* ── Burbuja usuario ── */
+#bubble_user {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+        stop:0 #7a1a1a, stop:1 #5c1212);
+    border-radius: 18px 18px 4px 18px;
+    border: 1px solid #9b2424;
+    padding: 10px 14px;
+    color: #ffffff;
+    max-width: 560px;
+}
+
+/* ── Burbuja bot ── */
+#bubble_bot {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #1e0c0c, stop:1 #160808);
+    border-radius: 18px 18px 18px 4px;
+    border: 1px solid #2e1010;
+    padding: 10px 14px;
+    color: #eadddd;
+    max-width: 640px;
+}
+
+/* ── Label nombre remitente ── */
+#sender_label {
+    color: #9c6060;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+    background: transparent;
+}
+
+/* ── Timestamp ── */
+#timestamp_label {
+    color: #4a2828;
+    font-size: 10px;
+    margin-top: 4px;
+    background: transparent;
+}
+
+/* ── Texto del mensaje ── */
+#message_text {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font-size: 13px;
+    line-height: 1.6;
+    selection-background-color: #7a2020;
+    selection-color: #ffffff;
+}
+
+/* ── Bloque de código ── */
+#code_block {
+    background-color: #09091e;
+    border-radius: 0 0 8px 8px;
+    color: #d0d0f8;
+    font-family: "Cascadia Code", "Fira Code", "Consolas", "Courier New", monospace;
+    font-size: 12px;
+    selection-background-color: #2a2a5a;
+}
+
+/* ══════════════════════════════════════════
+   INPUT BAR
+══════════════════════════════════════════ */
+#input_bar {
+    background-color: #080202;
+    border-top: 1px solid #1e0808;
+}
+
+#message_input {
+    background-color: #160808;
+    border: 1px solid #3a1212;
+    border-radius: 16px;
+    color: #e8d5d5;
+    padding: 10px 18px;
+    font-size: 13px;
+    min-height: 44px;
+    max-height: 130px;
+    selection-background-color: #7a2020;
+    selection-color: #ffffff;
+}
+#message_input:focus {
+    border: 1px solid #9b2424;
+    background-color: #1d0a0a;
+}
+#message_input:disabled {
+    background-color: #0d0404;
+    color: #3a1818;
+    border-color: #1a0606;
+}
+
+/* ── Botón enviar ── */
+#send_button {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #a82020, stop:1 #7a1515);
+    border: 1px solid #c03030;
+    border-radius: 14px;
+    color: #ffffff;
+    padding: 0px 18px;
+    font-size: 13px;
+    font-weight: bold;
+    min-width: 78px;
+    min-height: 44px;
+}
+#send_button:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0 #c8282a, stop:1 #9a1a1a);
+    border-color: #e04040;
+}
+#send_button:pressed {
+    background: #5a0f0f;
+    border-color: #7a1515;
+}
+#send_button:disabled {
+    background: #160606;
+    border-color: #220808;
+    color: #3a1515;
+}
+
+/* ══════════════════════════════════════════
+   STATUS BAR
+══════════════════════════════════════════ */
+#status_bar {
+    background-color: #060101;
+    border-top: 1px solid #160606;
+    color: #4a2525;
+    font-size: 10px;
+}
+
+/* ══════════════════════════════════════════
+   PLACEHOLDER
+══════════════════════════════════════════ */
+#placeholder_widget {
+    background-color: #0f0404;
+}
+
+/* ══════════════════════════════════════════
+   TYPING INDICATOR
+══════════════════════════════════════════ */
+#typing_indicator {
+    color: #7a4040;
+    font-size: 12px;
+    font-style: italic;
+    padding: 6px 20px;
+    background: transparent;
+}
+
+/* ══════════════════════════════════════════
+   BOTONES GENÉRICOS
+══════════════════════════════════════════ */
+QPushButton {
+    background-color: #160808;
+    border: 1px solid #3a1212;
+    border-radius: 8px;
+    color: #c8b0b0;
+    padding: 7px 16px;
+    font-size: 13px;
+}
+QPushButton:hover {
+    background-color: #220c0c;
+    border-color: #6b1e1e;
+    color: #e8d5d5;
+}
+QPushButton:pressed {
+    background-color: #0d0404;
+    border-color: #4a1515;
+}
+QPushButton:disabled {
+    background-color: #0d0404;
+    color: #3a1515;
+    border-color: #160606;
+}
+
+/* ── Separadores ── */
+QFrame[frameShape="4"],
+QFrame[frameShape="5"] {
+    background-color: #1e0808;
+    border: none;
+    max-height: 1px;
+}
+
+/* ── Tooltips ── */
+QToolTip {
+    background-color: #160808;
+    color: #e8d5d5;
+    border: 1px solid #5a1a1a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+/* ── QDialog ── */
+QDialog {
+    background-color: #120606;
+}
+
+/* ── QLineEdit ── */
+QLineEdit {
+    background-color: #160808;
+    border: 1px solid #3a1212;
+    border-radius: 8px;
+    color: #e8d5d5;
+    padding: 8px 12px;
+    font-size: 13px;
+    selection-background-color: #7a2020;
+    selection-color: #ffffff;
+}
+QLineEdit:focus {
+    border-color: #9b2424;
+    background-color: #1d0a0a;
+}
+
+/* ── QComboBox ── */
+QComboBox {
+    background-color: #160808;
+    border: 1px solid #3a1212;
+    border-radius: 8px;
+    color: #e8d5d5;
+    padding: 7px 14px;
+    font-size: 13px;
+}
+QComboBox:hover {
+    border-color: #6b1e1e;
+}
+QComboBox:focus {
+    border-color: #9b2424;
+}
+QComboBox::drop-down {
+    border: none;
+    width: 28px;
+}
+QComboBox::down-arrow {
+    color: #9b6060;
+    width: 10px;
+    height: 10px;
+}
+QComboBox QAbstractItemView {
+    background-color: #160808;
+    border: 1px solid #3a1212;
+    color: #e8d5d5;
+    selection-background-color: #4a1515;
+    selection-color: #ffffff;
+    outline: none;
+    padding: 4px;
+    border-radius: 6px;
+}
+
+/* ── QLabel genérico ── */
+QLabel {
+    background: transparent;
+}
+
+/* ── QProgressBar ── */
+QProgressBar {
+    background: #160808;
+    border-radius: 3px;
+    border: none;
+    text-align: center;
+    height: 4px;
+}
+QProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+        stop:0 #c0392b, stop:1 #e84040);
+    border-radius: 3px;
+}
+
+/* ── QMessageBox ── */
+QMessageBox {
+    background-color: #120606;
+}
+QMessageBox QLabel {
+    color: #e8d5d5;
+}
+
+/* ── QTextEdit / QTextBrowser ── */
+QTextEdit, QTextBrowser {
+    selection-background-color: #7a2020;
+    selection-color: #ffffff;
+    background: transparent;
+}
+
+/* ── QScrollArea ── */
+QScrollArea {
+    background: transparent;
+    border: none;
+}
+
+/* ── QMenuBar / QMenu (por si se usan en el futuro) ── */
+QMenuBar {
+    background-color: #080202;
+    color: #c8b0b0;
+    border-bottom: 1px solid #1e0808;
+}
+QMenuBar::item:selected {
+    background: #1e0808;
+}
+QMenu {
+    background-color: #120606;
+    border: 1px solid #3a1212;
+    border-radius: 6px;
+    padding: 4px;
+}
+QMenu::item {
+    padding: 6px 24px 6px 12px;
+    border-radius: 4px;
+    color: #e8d5d5;
+}
+QMenu::item:selected {
+    background-color: #2a1010;
+    color: #ffffff;
+}
+QMenu::separator {
+    height: 1px;
+    background: #1e0808;
+    margin: 4px 8px;
+}
+
+/* ══════════════════════════════════════════
+   HISTORIAL DE CHATS (para futuras mejoras)
+══════════════════════════════════════════ */
+#history_panel {
+    background-color: #080202;
+    border-left: 1px solid #1e0808;
+    min-width: 220px;
+    max-width: 220px;
+}
+
+#history_item {
+    background: transparent;
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: #9c7070;
+    font-size: 12px;
+}
+#history_item:hover {
+    background-color: #1a0808;
+    color: #e8d5d5;
+}
+#history_item[active="true"] {
+    background-color: #220c0c;
+    color: #e8d5d5;
+    border-left: 2px solid #c0392b;
+}
