@@ -2,7 +2,7 @@
   <img src="assets/icons/tabasco_logo.png" alt="Tabasco Logo" width="220px"/>
 </p>
 
-<h1 align="center">🌶️ TABASCO</h1>
+<h1 align="center">TABASCO</h1>
 
 <p align="center">
   <b>Terminal AI Bridge & Autonomous Coding Agent</b><br/>
