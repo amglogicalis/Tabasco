@@ -24,7 +24,41 @@ from PyQt6.QtCore import Qt
 from gui.main_window import MainWindow
 
 
+def limpiar_procesos_huerfanos():
+    """
+    Cierra cualquier proceso Chromium residual de Playwright sin ventana activa
+    y borra los archivos temporales SingletonLock para evitar bloqueos del perfil.
+    """
+    if sys.platform != "win32":
+        return
+    try:
+        import subprocess
+        # Cerrar procesos Chromium huérfanos en segundo plano (sin ventana interactiva)
+        subprocess.run(
+            'taskkill /f /im chrome.exe /fi "WINDOWTITLE eq "" "',
+            shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+        )
+        
+        # Eliminar archivos SingletonLock de los perfiles de los bots
+        profile_root = Path(os.environ.get('USERPROFILE', '')) / '.tabasco' / 'profiles'
+        if profile_root.exists():
+            for bot_dir in profile_root.iterdir():
+                if bot_dir.is_dir():
+                    lock_file = bot_dir / 'SingletonLock'
+                    if lock_file.exists():
+                        try:
+                            lock_file.unlink(missing_ok=True)
+                            print(f"[GarbageCollector] SingletonLock eliminado en: {bot_dir.name}", flush=True)
+                        except Exception:
+                            pass
+    except Exception:
+        pass
+
+
 def main():
+    # Limpiar procesos huérfanos antes del arranque
+    limpiar_procesos_huerfanos()
+
     # Habilitar escalado de alta resolución
     QApplication.setHighDpiScaleFactorRoundingPolicy(
         Qt.HighDpiScaleFactorRoundingPolicy.PassThrough
@@ -52,8 +86,12 @@ def main():
     window.show()
 
     ret = app.exec()
+    
+    # Limpieza final al cerrar la app
+    limpiar_procesos_huerfanos()
     sys.exit(ret)
 
 
 if __name__ == "__main__":
     main()
+
