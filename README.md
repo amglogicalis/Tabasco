@@ -172,7 +172,7 @@ pip install -r requirements.txt
 python -m playwright install chromium
 
 # 3. Comprobar que los imports y dependencias estén correctos
-python check_imports.py
+python scripts/check_imports.py
 
 # 4. Iniciar la aplicación
 python main.py
