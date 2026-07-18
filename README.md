@@ -1,21 +1,22 @@
-<div align="center">
+<p align="center">
   <img src="assets/icons/tabasco_logo.png" alt="Tabasco Logo" width="220"/>
-</div>
+</p>
 
 <h1 align="center">TABASCO</h1>
 
-<div align="center">
+
+<p align="center">
   <b>Terminal AI Bridge & Autonomous Coding Agent</b><br/>
   Un entorno de desarrollo híbrido de alto rendimiento que fusiona la potencia de los LLMs comerciales con tu sistema local, de forma 100% gratuita y sin consumo de API keys.
-</div>
+</p>
 
-<div align="center">
+<p align="center">
   <br/>
   <img src="https://img.shields.io/badge/Python-3.10%2B-red?style=flat-square&logo=python" alt="Python Version"/>
   <img src="https://img.shields.io/badge/GUI-PyQt6-darkred?style=flat-square" alt="PyQt6 Badge"/>
   <img src="https://img.shields.io/badge/Automation-Playwright-green?style=flat-square&logo=playwright" alt="Playwright Badge"/>
   <img src="https://img.shields.io/badge/License-Proprietary-orange?style=flat-square" alt="Proprietary License"/>
-</div>
+</p>
 
 
 ---
